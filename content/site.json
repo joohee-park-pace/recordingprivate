@@ -1,12 +1,16 @@
 {
   "brandName": "박주희 PARK JOOHEE",
   "brandSub": "Artist · Curator",
-  "heroTitle": "기록하는 조각, 함께 만드는 전시",
-  "heroSubKo": "작가로서 노동과 기억을 조각으로 기록하고, 기획자로서 공공미술과 협업 프로젝트를 만듭니다.",
-  "heroSubEn": "Sculpture that records labor and memory — and curatorial projects made together.",
+  "heroTitle": "프레임을 가로지르는 이야기, 장소와 삶을 직조하는 예술",
+  "heroSubKo": "시각예술가이자 큐레이터, 디렉터로서 사회가 강요하는 프레임과 시스템의 틈새를 탐구합니다. 지역의 구술 아카이빙부터 매체와 기술에 대한 역설적 질문까지, 눈에 보이지 않던 목소리와 기억을 하나의 무대로 끌어올립니다.",
+  "heroSubEn": "Weaving Narratives, Traversing Frames and Places\n\nAs a visual artist, curator, and director, Park Juhee explores the fissures within societal frames and systemic constraints. From regional oral archives to paradoxical questions on media and technology, she brings invisible voices and memories onto the artistic stage.",
   "aboutParas": [
-    "박주희는 노동의 시간과 사라져가는 기억을 조각과 전시로 붙잡아 둡니다. 현장을 찾아 그곳에서 일하고 살아온 사람들의 이야기를 모으고, 그 흔적을 물질로 옮겨 하나의 기록으로 남깁니다.",
-    "동시에 기획자로서 공공미술과 협업 프로젝트를 이끕니다. 서로 다른 사람과 장소를 잇고, 개인의 기억을 함께 쌓아 올린 공동의 서사로 확장하는 일 — 그 사이를 오가는 것이 작업의 중심입니다."
+    "· 예술적 정체성과 작업의 시작",
+    "박주희는 서울과 홍천을 오가며 시각예술, 전시 기획, 연구를 아우르는 멀티디스플리너리 아티스트입니다. 사회가 구성해 놓은 권력 구조와 알고리즘, 그리고 왜곡된 프레임 속에서 개인의 자유의지와 주체성이 어떻게 변형되는지에 깊은 관심을 두고 있습니다. 유쾌함과 킹받음, 그리고 서늘한 찝찝함을 오가는 고유의 위트와 감각으로 관람객에게 유효한 질문을 던집니다.",
+    "· 지역성과 구술 아카이빙, 삶의 서사",
+    "박주희의 작업은 장소의 기억과 사람의 삶에 깊이 뿌리내리고 있습니다. 홍천 진리에서 희망리로 이어지는 지역의 미시사와 어르신들의 구술 아카이빙, 그리고 여성/할머니들의 삶과 노동을 조명하는 작업을 지속해 왔습니다. 소외되고 잊히기 쉬운 일상의 노동과 지역적 정체성을 예술적 서사로 재구성하며, 기획 프로젝트 《월간 영귀미》 등을 통해 예술과 지역 커뮤니티가 접조하는 새로운 방식을 제시해 왔습니다.",
+    "· 매체와 시스템에 대한 확장적 탐구",
+    "나아가 디지털 매체, AI 자본주의, 이동형 게릴라 퍼포먼스에 이르기까지 전시의 형태와 범주를 적극적으로 확장하고 있습니다. 기술이 가져다주는 편리함 뒤에 은밀하게 숨겨진 통제와 이윤의 메커니즘을 폭로하고, 시스템의 권위를 무력화하는 '개소리(Bullshit)적 상상력'과 역설적 연출을 통해 우리가 속한 사회를 비판적으로 거울 반사합니다."
   ],
   "aboutEn": "Park Joohee works as both an artist and a curator: holding onto labor and memory through sculpture, and building public-art and collaborative projects that connect people and places.",
   "education": [
