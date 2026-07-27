@@ -339,6 +339,14 @@ content:
             collapsed: true
             summary: '{source} — {title}'
         fields:
+          - name: cat
+            label: 분류
+            type: select
+            options:
+              values:
+                - { value: news, label: 기사 }
+                - { value: sns, label: SNS }
+                - { value: etc, label: 기타 }
           - name: year
             label: 연도
             type: number

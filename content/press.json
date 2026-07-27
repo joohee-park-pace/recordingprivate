@@ -1,17 +1,27 @@
 {
   "items": [
-    { "year": 2025, "source": "더뉴스24", "title": "속초리, 다시쓰는 이야기", "url": "https://www.the-news24.co.kr/news/articleView.html?idxno=29285" },
-    { "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '살아남는 중입니다'", "url": "https://kwnews.co.kr/page/view/2025082116391522742" },
-    { "year": 2025, "source": "홍천신문", "title": "'2025 월간 영귀미' 8월 전시 《살아남는 중입니다》 개최", "url": "https://www.hcsinmoon.co.kr/news/articleView.html?idxno=78431" },
-    { "year": 2025, "source": "MSN", "title": "홍천 영귀미면의 '살아남는 중입니다'", "url": "https://www.msn.com/ko-kr/news/other/%ED%99%8D%EC%B2%9C-%EC%98%81%EA%B7%80%EB%AF%B8%EB%A9%B4%EC%9D%98-%EC%82%B4%EC%95%84%EB%82%A8%EB%8A%94-%EC%A4%91%EC%9E%85%EB%8B%88%EB%8B%A4/ar-AA1L6ohG" },
-    { "year": 2025, "source": "K스피릿", "title": "독특한 개성과 사유 담은 전시 둘러봐요", "url": "https://www.ikoreanspirit.com/news/articleView.html?idxno=81352" },
-    { "year": 2025, "source": "강원도민일보", "title": "홍천 버스정류장의 기억…'멈춤과 출발 사이' 내일까지 전시", "url": "https://v.daum.net/v/20250729000703608" },
-    { "year": 2025, "source": "강원일보", "title": "버스 정류장에 담긴 기억 … 홍천 영귀미면서 이색 전시회", "url": "https://kwnews.co.kr/page/view/2025072318275349872" },
-    { "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '멈춤과 출발 사이'", "url": "https://v.daum.net/v/20250722140318367" },
-    { "year": 2025, "source": "K스피릿", "title": "버스정류장에 담긴 기억과 정서, 《멈춤과 출발 사이》", "url": "https://www.ikoreanspirit.com/news/articleView.html?idxno=80915" },
-    { "year": 2025, "source": "강원도민일보", "title": "홍천 남영문구사에 담긴 기억과 감각 '영영 남을 이야기'", "url": "https://v.daum.net/v/20250628124631542" },
-    { "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '영영 남을 이야기'", "url": "https://www.kwnews.co.kr/page/view/2025062410063439962" },
-    { "year": 2025, "source": "강원도민일보", "title": "'문방구에서 꺼낸 기억' 홍천서 '영영 남을 이야기' 풀어낸다", "url": "https://www.kado.net/news/articleView.html?idxno=1319119" },
-    { "year": 2025, "source": "홍천신문", "title": "지역기반 전시 《영영 남을 이야기》 개최", "url": "https://www.hcsinmoon.co.kr/news/articleView.html?idxno=77145" }
+    { "cat": "news", "year": 2025, "source": "더뉴스24", "title": "속초리, 다시쓰는 이야기", "url": "https://www.the-news24.co.kr/news/articleView.html?idxno=29285" },
+    { "cat": "news", "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '살아남는 중입니다'", "url": "https://kwnews.co.kr/page/view/2025082116391522742" },
+    { "cat": "news", "year": 2025, "source": "홍천신문", "title": "'2025 월간 영귀미' 8월 전시 《살아남는 중입니다》 개최", "url": "https://www.hcsinmoon.co.kr/news/articleView.html?idxno=78431" },
+    { "cat": "news", "year": 2025, "source": "MSN", "title": "홍천 영귀미면의 '살아남는 중입니다'", "url": "https://www.msn.com/ko-kr/news/other/%ED%99%8D%EC%B2%9C-%EC%98%81%EA%B7%80%EB%AF%B8%EB%A9%B4%EC%9D%98-%EC%82%B4%EC%95%84%EB%82%A8%EB%8A%94-%EC%A4%91%EC%9E%85%EB%8B%88%EB%8B%A4/ar-AA1L6ohG" },
+    { "cat": "news", "year": 2025, "source": "K스피릿", "title": "독특한 개성과 사유 담은 전시 둘러봐요", "url": "https://www.ikoreanspirit.com/news/articleView.html?idxno=81352" },
+    { "cat": "news", "year": 2025, "source": "강원도민일보", "title": "홍천 버스정류장의 기억…'멈춤과 출발 사이' 내일까지 전시", "url": "https://v.daum.net/v/20250729000703608" },
+    { "cat": "news", "year": 2025, "source": "강원일보", "title": "버스 정류장에 담긴 기억 … 홍천 영귀미면서 이색 전시회", "url": "https://kwnews.co.kr/page/view/2025072318275349872" },
+    { "cat": "news", "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '멈춤과 출발 사이'", "url": "https://v.daum.net/v/20250722140318367" },
+    { "cat": "news", "year": 2025, "source": "K스피릿", "title": "버스정류장에 담긴 기억과 정서, 《멈춤과 출발 사이》", "url": "https://www.ikoreanspirit.com/news/articleView.html?idxno=80915" },
+    { "cat": "news", "year": 2025, "source": "강원도민일보", "title": "홍천 남영문구사에 담긴 기억과 감각 '영영 남을 이야기'", "url": "https://v.daum.net/v/20250628124631542" },
+    { "cat": "news", "year": 2025, "source": "강원일보", "title": "홍천 영귀미면의 '영영 남을 이야기'", "url": "https://www.kwnews.co.kr/page/view/2025062410063439962" },
+    { "cat": "news", "year": 2025, "source": "강원도민일보", "title": "'문방구에서 꺼낸 기억' 홍천서 '영영 남을 이야기' 풀어낸다", "url": "https://www.kado.net/news/articleView.html?idxno=1319119" },
+    { "cat": "news", "year": 2025, "source": "홍천신문", "title": "지역기반 전시 《영영 남을 이야기》 개최", "url": "https://www.hcsinmoon.co.kr/news/articleView.html?idxno=77145" },
+
+    { "cat": "sns", "year": 2025, "source": "Facebook", "title": "과정창고, 사라진 흔적들 — 영등포산업선교회관", "url": "https://www.facebook.com/ydpuim/posts/803367268728050" },
+    { "cat": "sns", "year": 2025, "source": "Instagram", "title": "전시 소개 게시물", "url": "https://www.instagram.com/p/DP3KaE6ErLz/" },
+    { "cat": "sns", "year": 2025, "source": "Instagram", "title": "전시 소개 게시물", "url": "https://www.instagram.com/p/DNK0TN5S_UM/" },
+    { "cat": "sns", "year": 2025, "source": "Instagram", "title": "전시 소개 게시물", "url": "https://www.instagram.com/p/DL1OnpzS_ov/" },
+    { "cat": "sns", "year": 2025, "source": "Instagram", "title": "전시 소개 게시물", "url": "https://www.instagram.com/p/DKyVIeTSMaD/" },
+
+    { "cat": "etc", "year": 2025, "source": "아카이비스트", "title": "과정창고: 사라진 흔적들 (전시 아카이브)", "url": "https://archivist.kr/exi?i=1758881229" },
+    { "cat": "etc", "year": 2025, "source": "아카이비스트", "title": "이야기는 물가에서 시작됐다 (전시 아카이브)", "url": "https://archivist.kr/exi?i=1748331208" },
+    { "cat": "etc", "year": 2025, "source": "데이포유", "title": "전시 일정 안내", "url": "https://dayforyou.com/getDetail?scheduleSeq=8517" }
   ]
 }
