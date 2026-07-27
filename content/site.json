@@ -1,0 +1,21 @@
+{
+  "brandName": "박주희",
+  "brandSub": "Artist · Curator",
+  "heroTitle": "기록하는 조각, 함께 만드는 전시",
+  "heroSubKo": "작가로서 노동과 기억을 조각으로 기록하고, 기획자로서 공공미술과 협업 프로젝트를 만듭니다.",
+  "heroSubEn": "Sculpture that records labor and memory — and curatorial projects made together.",
+  "aboutParas": [
+    "박주희는 노동의 시간과 사라져가는 기억을 조각과 전시로 붙잡아 둡니다. 현장을 찾아 그곳에서 일하고 살아온 사람들의 이야기를 모으고, 그 흔적을 물질로 옮겨 하나의 기록으로 남깁니다.",
+    "동시에 기획자로서 공공미술과 협업 프로젝트를 이끕니다. 서로 다른 사람과 장소를 잇고, 개인의 기억을 함께 쌓아 올린 공동의 서사로 확장하는 일 — 그 사이를 오가는 것이 작업의 중심입니다."
+  ],
+  "aboutEn": "Park Joohee works as both an artist and a curator: holding onto labor and memory through sculpture, and building public-art and collaborative projects that connect people and places.",
+  "education": [
+    { "year": "2018", "text": "○○대학교 대학원 조소과 졸업" },
+    { "year": "2015", "text": "○○대학교 미술대학 조소과 졸업" }
+  ],
+  "email": "njh2239@gmail.com",
+  "web": "recordingprivate.com",
+  "instagram": "",
+  "studio": "",
+  "notice": ""
+}
