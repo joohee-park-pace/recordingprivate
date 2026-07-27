@@ -1,0 +1,163 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: site
+    label: 사이트 기본 설정
+    type: file
+    path: content/site.json
+    fields:
+      - name: brandName
+        label: 이름 (한글)
+        type: string
+      - name: brandSub
+        label: 이름 밑 문구 (영문)
+        type: string
+      - name: heroTitle
+        label: 홈 대문 큰 문구
+        type: string
+      - name: heroSubKo
+        label: 홈 대문 설명 (국문)
+        type: text
+      - name: heroSubEn
+        label: 홈 대문 설명 (영문)
+        type: text
+      - name: aboutParas
+        label: 소개(About) 문단 — 여러 개 가능
+        type: text
+        list: true
+      - name: aboutEn
+        label: 소개 영문
+        type: text
+      - name: education
+        label: 학력 (Education)
+        type: object
+        list: true
+        fields:
+          - name: year
+            label: 연도
+            type: string
+          - name: text
+            label: 내용
+            type: string
+      - name: email
+        label: 이메일
+        type: string
+      - name: web
+        label: 웹 주소
+        type: string
+      - name: instagram
+        label: 인스타그램 아이디 (비우면 예시로 표시)
+        type: string
+      - name: studio
+        label: 작업실 지역 (비우면 예시로 표시)
+        type: string
+      - name: notice
+        label: 상단 안내 문구 (비우면 숨김)
+        type: string
+
+  - name: works
+    label: Works (작가 작업)
+    type: file
+    path: content/works.json
+    fields:
+      - name: items
+        label: 작업 목록
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 제목
+            type: string
+          - name: category
+            label: 분류
+            type: select
+            options:
+              values:
+                - { value: solo, label: 개인전 }
+                - { value: group, label: 단체전 }
+                - { value: work, label: 작품 }
+          - name: year
+            label: 연도
+            type: number
+          - name: meta
+            label: 정보 (예 · ○○ 갤러리, 서울 · 2025)
+            type: string
+          - name: medium
+            label: 재료 / 매체
+            type: string
+          - name: description
+            label: 설명 (전시 서문 · 작가노트)
+            type: text
+          - name: cover
+            label: 대표 이미지
+            type: image
+          - name: images
+            label: 추가 이미지 — 여러 장 가능
+            type: image
+            list: true
+
+  - name: projects
+    label: Projects (기획 · 공공미술 · 협업)
+    type: file
+    path: content/projects.json
+    fields:
+      - name: items
+        label: 프로젝트 목록
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: 제목
+            type: string
+          - name: category
+            label: 분류
+            type: select
+            options:
+              values:
+                - { value: curate, label: 기획전 }
+                - { value: public, label: 공공미술 }
+                - { value: collab, label: 협업 · 팀 }
+          - name: year
+            label: 연도
+            type: number
+          - name: meta
+            label: 정보 (예 · 기획 · ○○ 미술관 · 2024)
+            type: string
+          - name: role
+            label: 역할 (기획 / 공동작업 등)
+            type: string
+          - name: description
+            label: 설명
+            type: text
+          - name: cover
+            label: 대표 이미지
+            type: image
+          - name: images
+            label: 추가 이미지 — 여러 장 가능
+            type: image
+            list: true
+
+  - name: press
+    label: Press (기사)
+    type: file
+    path: content/press.json
+    fields:
+      - name: items
+        label: 기사 목록
+        type: object
+        list: true
+        fields:
+          - name: year
+            label: 연도
+            type: number
+          - name: source
+            label: 매체 (신문 · 매거진 이름)
+            type: string
+          - name: title
+            label: 기사 제목
+            type: string
+          - name: url
+            label: 링크 (기사 주소 URL)
+            type: string
