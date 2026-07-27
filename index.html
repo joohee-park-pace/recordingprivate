@@ -67,6 +67,9 @@
   .hero h1{margin:0;font-size:clamp(32px,6.6vw,72px);font-weight:500;letter-spacing:-.035em;line-height:1.03;text-wrap:balance}
   .hero .sub{margin-top:22px;max-width:54ch;font-size:clamp(14px,1.5vw,16px);color:var(--ink-2);line-height:1.6}
   .hero .sub .en{display:block;margin-top:6px;color:var(--faint);font-size:13px;letter-spacing:.01em}
+  .hero-line{max-width:none;padding:clamp(28px,4.5vw,52px) 0 clamp(14px,2.6vw,28px);
+    border-top:1px solid var(--line);margin-top:clamp(28px,5vw,52px)}
+  .hero-line h1{font-size:clamp(20px,3vw,34px);letter-spacing:-.02em;line-height:1.15}
 
   .sectlabel{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
     border-top:1px solid var(--line);padding-top:18px;margin-bottom:clamp(20px,3vw,32px)}
@@ -183,6 +186,10 @@
   .d-meta{margin:14px 0 0;font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
   .d-hero{aspect-ratio:16/9;background:var(--ph);background-size:cover;background-position:center;
     box-shadow:inset 0 0 0 1px var(--line);margin:clamp(24px,4vw,40px) 0 clamp(30px,5vw,56px);cursor:zoom-in}
+  .d-video{position:relative;width:100%;aspect-ratio:16/9;margin:0 0 clamp(30px,5vw,56px);
+    background:#000;box-shadow:inset 0 0 0 1px var(--line)}
+  .d-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .d-video[hidden]{display:none}
   .d-body{display:grid;grid-template-columns:minmax(180px,0.85fr) 2fr;gap:clamp(28px,5vw,64px);
     padding-bottom:clamp(30px,5vw,56px);border-bottom:1px solid var(--line)}
   @media (max-width:760px){.d-body{grid-template-columns:1fr;gap:26px}}
@@ -258,15 +265,8 @@
   <!-- ================= 홈 ================= -->
   <section class="page" data-page="home">
     <div class="wrap">
-      <div class="hero">
-        <h1>기록하는 조각, 함께 만드는 전시</h1>
-        <p class="sub">작가로서 노동과 기억을 조각으로 기록하고, 기획자로서 공공미술과 협업 프로젝트를 만듭니다.
-          <span class="en">Sculpture that records labor and memory — and curatorial projects made together.</span>
-        </p>
-      </div>
-
-      <div class="sectlabel">
-        <span class="l">Recent · 최근 전시</span>
+      <div class="sectlabel" style="margin-top:6px">
+        <span class="l">전시소식 · Recent</span>
         <span class="link-more" data-goto="works" data-reset="works">전체 보기 <span class="arw">→</span></span>
       </div>
       <div class="slider" id="slider">
@@ -283,6 +283,13 @@
           <div class="slide-cap"><span class="c"></span><span class="t"></span><span class="m"></span></div>
           <div class="dots" role="tablist" aria-label="전시 선택"></div>
         </div>
+      </div>
+
+      <div class="hero hero-line">
+        <h1>기록하는 조각, 함께 만드는 전시</h1>
+        <p class="sub">작가로서 노동과 기억을 조각으로 기록하고, 기획자로서 공공미술과 협업 프로젝트를 만듭니다.
+          <span class="en">Sculpture that records labor and memory — and curatorial projects made together.</span>
+        </p>
       </div>
     </div>
   </section>
@@ -363,6 +370,7 @@
         <p class="d-meta" id="d-meta"></p>
       </div>
       <div class="d-hero zoom" id="d-hero"></div>
+      <div class="d-video" id="d-video" hidden></div>
       <div class="d-body">
         <aside class="d-info">
           <dl>
@@ -564,12 +572,22 @@
   function metaNoYear(m){return (m||'').replace(/\s*·\s*\d{4}\s*$/,'');}
   function dkey(it){ return it.date?String(it.date):(it.year?String(it.year)+'-00-00':'0000-00-00'); }
   function byDateDesc(a,b){ var ka=dkey(a),kb=dkey(b); return ka<kb?1:(ka>kb?-1:0); }
-  function setBg(node,url){node.style.backgroundImage='url('+url+')';node.setAttribute('data-src',url);}
+  /* Netlify 이미지 자동최적화: 업로드한 실제 사진은 리사이즈+압축된 버전으로 서빙 (생성 이미지는 그대로) */
+  function optImg(u,w){ if(!u||u.indexOf('data:')===0) return u; return '/.netlify/images?url='+encodeURIComponent(u)+'&w='+w+'&q=72'; }
+  function setBg(node,thumb,full){node.style.backgroundImage='url('+thumb+')';node.setAttribute('data-src',full||thumb);}
+  /* 유튜브 · 비메오 URL → 임베드 주소 */
+  function embedUrl(v){ if(!v) return ''; v=String(v).trim();
+    var yt=v.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|live\/))([\w-]{6,})/);
+    if(yt) return 'https://www.youtube.com/embed/'+yt[1];
+    var vm=v.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if(vm) return 'https://player.vimeo.com/video/'+vm[1];
+    return '';
+  }
 
   /* ---- 타일 / 슬라이드 ---- */
   function tileFor(item){
     var art=el('article','tile'); art.setAttribute('data-cat',item.category); art.setAttribute('data-id',item._id);
-    var frame=el('div','frame'); setBg(frame,coverOf(item,1000,1250)); frame.classList.add('hasimg');
+    var frame=el('div','frame'); var cov=coverOf(item,1000,1250); setBg(frame,optImg(cov,800),optImg(cov,1600)); frame.classList.add('hasimg');
     var label=el('div','label');
     label.appendChild(el('span','cat',CATEN[item.category]||''));
     label.appendChild(el('span','title',item.title||''));
@@ -580,7 +598,7 @@
   function slideFor(item){
     var a=el('a','slide'); a.setAttribute('data-back',item.section); a.setAttribute('data-id',item._id);
     a.setAttribute('data-c',CATEN[item.category]||''); a.setAttribute('data-t',item.title||''); a.setAttribute('data-m',item.meta||'');
-    var wide=el('span','wide'); setBg(wide,coverOf(item,1600,800)); wide.classList.add('hasimg');
+    var wide=el('span','wide'); setBg(wide,optImg(coverOf(item,1600,800),1600)); wide.classList.add('hasimg');
     a.appendChild(wide); return a;
   }
   function buildFilters(sel,scope,defs,items){
@@ -663,7 +681,13 @@
     $('#d-cat').textContent=CATLABEL[item.category]||'';
     $('#d-title').textContent=item.title||'';
     $('#d-meta').textContent=item.meta||'';
-    setBg($('#d-hero'),coverOf(item,1600,900));
+    var hc=coverOf(item,1600,900); setBg($('#d-hero'),optImg(hc,1600),optImg(hc,2000));
+    var vwrap=document.getElementById('d-video');
+    if(vwrap){ var emb=embedUrl(item.video);
+      if(emb){ vwrap.innerHTML=''; var ifr=el('iframe'); ifr.src=emb;
+        ifr.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        ifr.setAttribute('allowfullscreen',''); ifr.setAttribute('loading','lazy'); vwrap.appendChild(ifr); vwrap.hidden=false; }
+      else { vwrap.innerHTML=''; vwrap.hidden=true; } }
     var info=$('.d-info'); info.innerHTML=''; var dl=el('dl'); info.appendChild(dl);
     var irow=function(k,v,mail){ dl.appendChild(el('dt',null,k)); var dd=el('dd'); if(mail){var a=el('a',null,v); a.href='mailto:'+EMAIL; a.style.borderBottom='1px solid var(--line-2)'; dd.appendChild(a);} else dd.textContent=v; dl.appendChild(dd); };
     irow('분류',CATLABEL[item.category]||'');
@@ -676,7 +700,7 @@
     paras.forEach(function(p){ p=p.trim(); if(p){ text.appendChild(el('p',null,p)); wrote=true; } });
     if(!wrote) text.appendChild(el('p',null,''));
     var gal=$('#d-gallery'); gal.innerHTML='';
-    galleryOf(item).forEach(function(u){ var d=el('div','d-shot zoom'); setBg(d,u); gal.appendChild(d); });
+    galleryOf(item).forEach(function(u){ var d=el('div','d-shot zoom'); setBg(d,optImg(u,800),optImg(u,2000)); gal.appendChild(d); });
     var back=item.section, label=(back==='projects'?'← Projects 목록으로':'← Works 목록으로');
     ['d-back','d-back2'].forEach(function(id){var b=document.getElementById(id); b.setAttribute('data-goto',back); b.textContent=label;});
     detailReady=true;

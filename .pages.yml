@@ -88,6 +88,9 @@ content:
           - name: description
             label: 설명 (전시 서문 · 작가노트)
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
@@ -124,6 +127,9 @@ content:
           - name: description
             label: 설명
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
@@ -160,6 +166,9 @@ content:
           - name: description
             label: 설명
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
@@ -196,6 +205,9 @@ content:
           - name: description
             label: 설명
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
@@ -232,6 +244,9 @@ content:
           - name: description
             label: 설명
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
@@ -268,6 +283,9 @@ content:
           - name: description
             label: 설명
             type: text
+          - name: video
+            label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
+            type: string
           - name: cover
             label: 대표 이미지
             type: image
