@@ -572,6 +572,12 @@
     for(var k=0;k<nn;k++) arr.push(makeArt(1000,1250,base+k*101+7));
     return arr;
   }
+  /* 대표(전시전경/작품) 사진 = images 중 포스터(cover)가 아닌 첫 사진 */
+  function repOf(item){
+    var poster=item.cover||'', imgs=item.images||[];
+    for(var i=0;i<imgs.length;i++){ if(imgs[i] && imgs[i]!==poster) return imgs[i]; }
+    return '';
+  }
   function metaNoYear(m){return (m||'').replace(/\s*·\s*\d{4}\s*$/,'');}
   function dkey(it){ return it.date?String(it.date):(it.year?String(it.year)+'-00-00':'0000-00-00'); }
   function byDateDesc(a,b){ var ka=dkey(a),kb=dkey(b); return ka<kb?1:(ka>kb?-1:0); }
@@ -601,7 +607,8 @@
   function slideFor(item){
     var a=el('a','slide'); a.setAttribute('data-back',item.section); a.setAttribute('data-id',item._id);
     a.setAttribute('data-c',CATEN[item.category]||''); a.setAttribute('data-t',item.title||''); a.setAttribute('data-m',item.meta||'');
-    var wide=el('span','wide'); setBg(wide,optImg(coverOf(item,1600,800),1600)); wide.classList.add('hasimg');
+    var r=repOf(item), wimg=r||item.cover||makeArt(1600,800,hashStr(item.title+(item.meta||''))%100000);
+    var wide=el('span','wide'); setBg(wide,optImg(wimg,1600)); wide.classList.add('hasimg');
     a.appendChild(wide); return a;
   }
   function buildFilters(sel,scope,defs,items){
@@ -684,7 +691,9 @@
     $('#d-cat').textContent=CATLABEL[item.category]||'';
     $('#d-title').textContent=item.title||'';
     $('#d-meta').textContent=item.meta||'';
-    var hc=coverOf(item,1600,900); setBg($('#d-hero'),optImg(hc,1600),optImg(hc,2000));
+    var rep=repOf(item);
+    var hImg=rep||item.cover||makeArt(1600,900,hashStr(item.title+(item.meta||''))%100000);
+    setBg($('#d-hero'),optImg(hImg,1600),optImg(hImg,2000));
     var vwrap=document.getElementById('d-video');
     if(vwrap){ var emb=embedUrl(item.video);
       if(emb){ vwrap.innerHTML=''; var ifr=el('iframe'); ifr.src=emb;
@@ -703,7 +712,13 @@
     paras.forEach(function(p){ p=p.trim(); if(p){ text.appendChild(el('p',null,p)); wrote=true; } });
     if(!wrote) text.appendChild(el('p',null,''));
     var gal=$('#d-gallery'); gal.innerHTML='';
-    galleryOf(item).forEach(function(u){ var d=el('div','d-shot zoom'); setBg(d,optImg(u,800),optImg(u,2000)); gal.appendChild(d); });
+    var glist;
+    if(item.cover || (item.images && item.images.length)){
+      var poster=item.cover||'', used=rep||item.cover||'';
+      glist=(item.images||[]).filter(function(x){return x && x!==used && x!==poster;});
+      if(poster && poster!==used) glist.push(poster);   /* 포스터는 맨 아래로 */
+    } else { glist=galleryOf(item); }
+    glist.forEach(function(u){ var d=el('div','d-shot zoom'); setBg(d,optImg(u,800),optImg(u,2000)); gal.appendChild(d); });
     var back=item.section, label=(back==='projects'?'← Projects 목록으로':'← Works 목록으로');
     ['d-back','d-back2'].forEach(function(id){var b=document.getElementById(id); b.setAttribute('data-goto',back); b.textContent=label;});
     detailReady=true;
