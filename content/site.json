@@ -1,5 +1,5 @@
 {
-  "brandName": "박주희",
+  "brandName": "박주희 PARK JOOHEE",
   "brandSub": "Artist · Curator",
   "heroTitle": "기록하는 조각, 함께 만드는 전시",
   "heroSubKo": "작가로서 노동과 기억을 조각으로 기록하고, 기획자로서 공공미술과 협업 프로젝트를 만듭니다.",
@@ -10,12 +10,15 @@
   ],
   "aboutEn": "Park Joohee works as both an artist and a curator: holding onto labor and memory through sculpture, and building public-art and collaborative projects that connect people and places.",
   "education": [
-    { "year": "2018", "text": "○○대학교 대학원 조소과 졸업" },
-    { "year": "2015", "text": "○○대학교 미술대학 조소과 졸업" }
+    {
+      "year": "2018",
+      "text": "○○대학교 대학원 조소과 졸업"
+    },
+    {
+      "year": "2015",
+      "text": "○○대학교 미술대학 조소과 졸업"
+    }
   ],
   "email": "njh2239@gmail.com",
-  "web": "recordingprivate.com",
-  "instagram": "",
-  "studio": "",
-  "notice": ""
+  "web": "recordingprivate.com"
 }
