@@ -44,6 +44,20 @@ content:
           - name: text
             label: 내용
             type: string
+      - name: career
+        label: 경력 (Career · 일)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{year} · {text}'
+        fields:
+          - name: year
+            label: 연도 (또는 기간)
+            type: string
+          - name: text
+            label: 내용 (직함 · 기관 등)
+            type: string
       - name: email
         label: 이메일
         type: string
@@ -92,10 +106,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 
@@ -131,10 +148,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 
@@ -170,10 +190,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 
@@ -209,10 +232,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 
@@ -248,10 +274,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 
@@ -287,10 +316,13 @@ content:
             label: 영상 링크 (유튜브 · 비메오 URL · 없으면 비워두기)
             type: string
           - name: cover
-            label: 대표 이미지
+            label: 포스터 (목록 썸네일에 보임)
+            type: image
+          - name: main
+            label: 메인 이미지 (상세페이지 큰 사진)
             type: image
           - name: images
-            label: 추가 이미지 — 여러 장 가능
+            label: 세부 이미지 (상세 갤러리) — 여러 장 가능
             type: image
             list: true
 

@@ -94,6 +94,10 @@
   .chip[aria-pressed="true"]{color:var(--ink)}
   .chip[aria-pressed="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:1px;background:var(--ink)}
   .chip:focus-visible{outline:2px solid var(--line-2);outline-offset:4px;border-radius:2px}
+  .yearwrap{margin-left:auto}
+  .yearsel{font-family:inherit;font-size:13px;color:var(--ink-2);background:transparent;
+    border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;cursor:pointer}
+  .yearsel:hover{border-color:var(--ink);color:var(--ink)}
 
   /* ===== 갤러리 ===== */
   .gallery{display:grid;gap:clamp(20px,3.4vw,52px) clamp(18px,2.6vw,36px);
@@ -108,6 +112,7 @@
   .slide .wide{background-size:cover;background-position:center}
   .hasimg .ph{display:none}
   .tile:hover .frame{opacity:.78}
+  .tile[data-cat="work"] .frame{aspect-ratio:1/1;background-size:cover}
   .label{padding-top:14px;display:flex;flex-direction:column;gap:4px}
   .label .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
   .label .title{font-size:15px;font-weight:500;letter-spacing:-.015em;line-height:1.3}
@@ -475,8 +480,7 @@
   <!-- ================= Contact ================= -->
   <section class="page" data-page="contact">
     <div class="wrap">
-      <div class="pagehead"><div class="eyebrow">Get in touch</div><h2>Contact</h2>
-        <p class="desc">전시·작품 문의, 기획·협업 제안을 환영합니다.</p></div>
+      <div class="pagehead"><div class="eyebrow">Get in touch</div><h2>Contact</h2></div>
       <div class="contact">
         <a class="row" href="mailto:njh2239@gmail.com"><span class="k">Email</span><span class="v">njh2239@gmail.com</span></a>
         <a class="row" href="https://www.recordingprivate.com"><span class="k">Web</span><span class="v">recordingprivate.com</span></a>
@@ -516,6 +520,34 @@
   function $(s,r){return (r||document).querySelector(s);}
   function $all(s,r){return [].slice.call((r||document).querySelectorAll(s));}
   function el(t,c,tx){var e=document.createElement(t);if(c)e.className=c;if(tx!=null)e.textContent=tx;return e;}
+  /* 텍스트를 줄바꿈(\n) 살려서 넣기 (엔터 → <br>) */
+  function appendLines(node,text){ String(text||'').split('\n').forEach(function(seg,i){ if(i) node.appendChild(document.createElement('br')); node.appendChild(document.createTextNode(seg)); }); }
+  /* 분류 + 연도 결합 필터 */
+  function applyFilter(scope){
+    var chip=$('.chip[data-scope="'+scope+'"][aria-pressed="true"]');
+    var cat=chip?chip.getAttribute('data-filter'):'all';
+    var sel=$('.yearsel[data-scope="'+scope+'"]');
+    var yr=sel?sel.value:'all';
+    var tiles=$all('#gallery-'+scope+' .tile'), shown=0;
+    tiles.forEach(function(t){
+      var mc=(cat==='all')||(t.getAttribute('data-cat')===cat);
+      var my=(yr==='all')||(t.getAttribute('data-year')===String(yr));
+      var m=mc&&my; t.hidden=!m; if(m)shown++;
+    });
+    var empty=$('.emptynote[data-empty="'+scope+'"]'); if(empty) empty.hidden=shown!==0;
+  }
+  function buildYearSel(scope,label,items){
+    var row=$('.filterrow[aria-label="'+label+'"]'); if(!row) return;
+    var old=row.querySelector('.yearwrap'); if(old&&old.parentNode) old.parentNode.removeChild(old);
+    var years=[]; items.forEach(function(it){ if(it.year && years.indexOf(it.year)<0) years.push(it.year); });
+    years.sort(function(a,b){return b-a;});
+    if(!years.length) return;
+    var wrap=el('span','yearwrap'), sel=el('select','yearsel');
+    sel.setAttribute('data-scope',scope); sel.setAttribute('aria-label','연도 선택');
+    var o0=el('option',null,'전체 연도'); o0.value='all'; sel.appendChild(o0);
+    years.forEach(function(y){ var o=el('option',null,String(y)); o.value=String(y); sel.appendChild(o); });
+    wrap.appendChild(sel); row.appendChild(wrap);
+  }
 
   var CATLABEL={solo:'개인전',group:'단체전',work:'작품',curate:'기획전',public:'공공미술',collab:'협업 · 팀'};
   var CATEN={solo:'Solo',group:'Group',work:'Work',curate:'기획전',public:'공공미술',collab:'협업 · 팀'};
@@ -598,7 +630,7 @@
 
   /* ---- 타일 / 슬라이드 ---- */
   function tileFor(item){
-    var art=el('article','tile'); art.setAttribute('data-cat',item.category); art.setAttribute('data-id',item._id);
+    var art=el('article','tile'); art.setAttribute('data-cat',item.category); art.setAttribute('data-year',item.year||''); art.setAttribute('data-id',item._id);
     var frame=el('div','frame'); var cov=coverOf(item,1000,1250); setBg(frame,optImg(cov,800),optImg(cov,1600)); frame.classList.add('hasimg');
     var label=el('div','label');
     label.appendChild(el('span','cat',CATEN[item.category]||''));
@@ -610,7 +642,7 @@
   function slideFor(item){
     var a=el('a','slide'); a.setAttribute('data-back',item.section); a.setAttribute('data-id',item._id);
     a.setAttribute('data-c',CATEN[item.category]||''); a.setAttribute('data-t',item.title||''); a.setAttribute('data-m',item.meta||'');
-    var r=repOf(item), wimg=r||item.cover||makeArt(1600,800,hashStr(item.title+(item.meta||''))%100000);
+    var r=item.main||repOf(item), wimg=r||item.cover||makeArt(1600,800,hashStr(item.title+(item.meta||''))%100000);
     var wide=el('span','wide'); setBg(wide,optImg(wimg,1600)); wide.classList.add('hasimg');
     a.appendChild(wide); return a;
   }
@@ -634,7 +666,7 @@
     if(site.brandSub&&$('.brand .en')) $('.brand .en').textContent=site.brandSub;
     if(site.heroTitle&&$('.hero h1')) $('.hero h1').textContent=site.heroTitle;
     var sub=$('.hero .sub');
-    if(sub){ sub.innerHTML=''; sub.appendChild(document.createTextNode(site.heroSubKo||'')); if(site.heroSubEn) sub.appendChild(el('span','en',site.heroSubEn)); }
+    if(sub){ sub.innerHTML=''; appendLines(sub, site.heroSubKo||''); if(site.heroSubEn){ var ens=el('span','en'); appendLines(ens, site.heroSubEn); sub.appendChild(ens); } }
     if(site.email) EMAIL=site.email;
 
     works.forEach(function(w){w.section='works';});
@@ -648,19 +680,25 @@
     var gw=$('#gallery-works'); if(gw){ gw.innerHTML=''; works.forEach(function(it){gw.appendChild(tileFor(it));}); }
     buildFilters('.filterrow[aria-label="프로젝트 분류 필터"]','projects',PROJ_FILTERS,projects);
     var gp=$('#gallery-projects'); if(gp){ gp.innerHTML=''; projects.forEach(function(it){gp.appendChild(tileFor(it));}); }
+    buildYearSel('works','작품 분류 필터',works);
+    buildYearSel('projects','프로젝트 분류 필터',projects);
     $all('.samplenote').forEach(function(n){ if(n.parentNode) n.parentNode.removeChild(n); });
 
     var recent=all.slice().sort(byDateDesc).slice(0,3);
     var track=$('.slider-track'); if(track){ track.innerHTML=''; recent.forEach(function(it){track.appendChild(slideFor(it));}); }
 
     var prose=$('.page[data-page="about"] .prose');
-    if(prose){ prose.innerHTML=''; (site.aboutParas||[]).forEach(function(p){prose.appendChild(el('p',null,p));}); if(site.aboutEn) prose.appendChild(el('p','en',site.aboutEn)); }
+    if(prose){ prose.innerHTML='';
+      (site.aboutParas||[]).forEach(function(p){ var pp=el('p'); appendLines(pp,p); prose.appendChild(pp); });
+      if(site.aboutEn){ String(site.aboutEn).split(/\n{2,}/).map(function(x){return x.trim();}).filter(Boolean).forEach(function(p,i){ var pp=el('p','en'); if(i===0) pp.style.marginTop='clamp(22px,3.4vw,36px)'; appendLines(pp,p); prose.appendChild(pp); }); }
+    }
 
     var cvBox=$('.cv');
     if(cvBox){ cvBox.innerHTML='';
       var addSection=function(t,rows){ if(!rows.length) return; var s=el('section'); s.appendChild(el('h3',null,t)); var ul=el('ul'); rows.forEach(function(r){var li=el('li'); li.appendChild(el('span','yr',String(r.year||''))); li.appendChild(el('span',null,r.text)); ul.appendChild(li);}); s.appendChild(ul); cvBox.appendChild(s); };
       var fromItems=function(list){ return list.slice().sort(byDateDesc).map(function(it){return {year:it.year,text:it.title+(metaNoYear(it.meta)?' — '+metaNoYear(it.meta):'')};}); };
       addSection('Education',(site.education||[]).map(function(e){return {year:e.year,text:e.text};}));
+      addSection('Career',(site.career||[]).map(function(e){return {year:e.year,text:e.text};}));
       addSection('Solo',fromItems(works.filter(function(w){return w.category==='solo';})));
       addSection('Curating',fromItems(projects));
       addSection('Group',fromItems(works.filter(function(w){return w.category==='group';})));
@@ -694,7 +732,7 @@
     $('#d-cat').textContent=CATLABEL[item.category]||'';
     $('#d-title').textContent=item.title||'';
     $('#d-meta').textContent=item.meta||'';
-    var rep=repOf(item);
+    var rep=item.main||repOf(item);
     var hImg=rep||item.cover||makeArt(1600,900,hashStr(item.title+(item.meta||''))%100000);
     setBg($('#d-hero'),optImg(hImg,1600),optImg(hImg,2000));
     var vwrap=document.getElementById('d-video');
@@ -773,12 +811,14 @@
 
     document.addEventListener('click',function(e){
       var c=e.target.closest('.chip'); if(!c) return;
-      var scope=c.getAttribute('data-scope'), f=c.getAttribute('data-filter');
+      var scope=c.getAttribute('data-scope');
       $all('.chip[data-scope="'+scope+'"]').forEach(function(x){x.setAttribute('aria-pressed','false');});
       c.setAttribute('aria-pressed','true');
-      var tiles=$all('#gallery-'+scope+' .tile'); var shown=0;
-      tiles.forEach(function(t){var m=(f==='all')||(t.getAttribute('data-cat')===f); t.hidden=!m; if(m)shown++;});
-      var empty=$('.emptynote[data-empty="'+scope+'"]'); if(empty) empty.hidden=shown!==0;
+      applyFilter(scope);
+    });
+    document.addEventListener('change',function(e){
+      var s=e.target.closest('.yearsel'); if(!s) return;
+      applyFilter(s.getAttribute('data-scope'));
     });
 
     document.addEventListener('click',function(e){
