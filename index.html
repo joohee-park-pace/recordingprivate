@@ -701,8 +701,8 @@
     var cvBox=$('.cv');
     if(cvBox){ cvBox.innerHTML='';
       var addSection=function(t,rows){ if(!rows.length) return; var s=el('section'); s.appendChild(el('h3',null,t)); var ul=el('ul'); rows.forEach(function(r){var li=el('li'); li.appendChild(el('span','yr',String(r.year||''))); var tx=el('span','cv-tx'); tx.appendChild(el('span',null,r.text)); if(r.en) tx.appendChild(el('span','cv-en',r.en)); li.appendChild(tx); ul.appendChild(li);}); s.appendChild(ul); cvBox.appendChild(s); };
-      var fromItems=function(list){ return list.slice().sort(byDateDesc).map(function(it){return {year:it.year,text:it.title+(metaNoYear(it.meta)?' — '+metaNoYear(it.meta):'')};}); };
-      addSection('Education',(site.education||[]).map(function(e){return {year:e.year,text:e.text};}));
+      var fromItems=function(list){ return list.slice().sort(byDateDesc).map(function(it){return {year:it.year,text:it.title+(metaNoYear(it.meta)?' — '+metaNoYear(it.meta):''),en:it.en};}); };
+      addSection('Education',(site.education||[]).map(function(e){return {year:e.year,text:e.text,en:e.en};}));
       addSection('Career',(site.career||[]).map(function(e){return {year:e.year,text:e.text,en:e.en};}));
       addSection('Solo',fromItems(works.filter(function(w){return w.category==='solo';})));
       addSection('Curating',fromItems(projects));

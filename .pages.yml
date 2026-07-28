@@ -44,6 +44,9 @@ content:
           - name: text
             label: 내용
             type: string
+          - name: en
+            label: 영문 (English · 선택)
+            type: text
       - name: career
         label: 경력 (Career · 일)
         type: object
@@ -93,6 +96,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
@@ -135,6 +141,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
@@ -177,6 +186,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
@@ -219,6 +231,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
@@ -261,6 +276,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
@@ -303,6 +321,9 @@ content:
           - name: title
             label: 제목
             type: string
+          - name: en
+            label: 영문 표기 (CV · English · 선택)
+            type: text
           - name: date
             label: 날짜 (이 순서대로 자동 정렬됩니다)
             type: date
